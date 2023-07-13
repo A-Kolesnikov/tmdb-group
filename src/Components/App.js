@@ -1,14 +1,13 @@
-import '../App.css';
+import React from 'react';
+import RegisterPage from './RegisterPage';
 
-import { initStorage } from '../Service/LocalStorageManager';
-
-function App() {
-  initStorage() //creating object with all project data in localStorage, if there is none
+const App = () => {
   return (
     <div>
-        Hello!
+      <h1>Registration Page</h1>
+      <RegisterPage />
     </div>
   );
-}
+};
 
 export default App;
