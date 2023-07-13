@@ -49,6 +49,12 @@ export function allData() {     //read data from localStorage as single object
     return (JSON.parse(dB.getItem('tmdbData')))
 }
 
+export function saveNewUser(user){      
+    const data = allData();
+    data.users.push(user);
+    updStorage(data)
+}
+
 export function setUserPassword(id, password) {     //test function to manipulate user data
     const data = allData()
     const user = data.users.find(user => user.id === id);
