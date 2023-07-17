@@ -1,13 +1,13 @@
 const dB = localStorage
 
 const tmdbInitData = {      //initial static data for testing
-    loggedUser: '',
+    loggedUser: "1",
     users: [
         {
             id: 1,
             username: 'Bret',
             password: '0000',
-            favLang: '',
+            favLang: 'ru',
             favGenre: '',
             voice: '',
             viewedMovies: []
@@ -16,7 +16,7 @@ const tmdbInitData = {      //initial static data for testing
             id: 2,
             username: 'Antonette',
             password: '1234',
-            favLang: 'en',
+            favLang: 'he',
             favGenre: 1,
             voice: '',
             viewedMovies: []
@@ -36,6 +36,7 @@ export function initStorage() {  //if there is no data about prject in local sto
         dB.setItem('tmdbData', JSON.stringify(tmdbInitData))
     }
 }
+initStorage()
 
 export function clearStorage() {
     dB.removeItem('tmdbData')
@@ -49,12 +50,6 @@ export function allData() {     //read data from localStorage as single object
     return (JSON.parse(dB.getItem('tmdbData')))
 }
 
-export function saveNewUser(user){      
-    const data = allData();
-    data.users.push(user);
-    updStorage(data)
-}
-
 export function setUserPassword(id, password) {     //test function to manipulate user data
     const data = allData()
     const user = data.users.find(user => user.id === id);
@@ -65,3 +60,11 @@ export function setUserPassword(id, password) {     //test function to manipulat
         console.log("No such user found")
     }
 }
+
+function setLoggedUser(id){     //Call, when LogIn successfully 
+    const data = allData();
+    data.loggedUser = id;
+    updStorage(data);
+}
+
+setLoggedUser("2")      //immitates, that user2 with id: 2 Logged in
