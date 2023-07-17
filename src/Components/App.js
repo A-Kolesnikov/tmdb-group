@@ -1,9 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import RegisterPage from './RegisterPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';//packages
+
+import { initStorage } from '../Service/LocalStorageManager'; //functions
+
+import RegisterPage from './RegisterPage'; //components
+
 
 function App() {
+  initStorage()
   return (
     <div className="App">
       <Router>
