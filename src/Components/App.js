@@ -10,7 +10,7 @@ import RegisterPage from './RegisterPage'; //components
 
 function App() {
   initStorage()
-  
+  downloadMovieList(x=>console.log(x), 1)
   return (
     <div className="App">
       <Router>
