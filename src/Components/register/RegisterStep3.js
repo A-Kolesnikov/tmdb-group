@@ -18,9 +18,10 @@ export const RegisterStep3 = ({ setFormData, formData, navigation }) => {
                         <Form.Label>Choose Gallery</Form.Label>
                         <Form.Control as="select" value={gallery} onChange={e => setGallery(e.target.value)}>
                             <option value="">Select</option>
-                            <option value="mostPopular">Most Popular</option>
-                            <option value="topRated">Top Rated</option>
-                            <option value="upcoming">Upcoming</option>
+                            <option value="0">Now Playing</option>
+                            <option value="1">Most Popular</option>
+                            <option value="2">Top Rated</option>
+                            <option value="3">Upcoming</option>
                         </Form.Control>
                     </Form.Group>
                     <Button variant="primary" type="submit">Next</Button>
