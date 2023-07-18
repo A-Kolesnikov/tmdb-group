@@ -1,10 +1,12 @@
 import React from 'react';
 import { allData } from '../Service/LocalStorageManager';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const UserPage = () => {
     const data = allData();
     const loggedUser = data.users.find(user => user.id === data.loggedUser);
+    const navigate = useNavigate();
 
     return (
         <Container>
@@ -20,6 +22,7 @@ const UserPage = () => {
                                 <p><strong>Gallery Preference:</strong> {loggedUser.favGallery}</p>
                                 <p><strong>Voice:</strong> {loggedUser.voice}</p>
                             </Card.Text>
+                            <Button variant="primary" onClick={() => navigate('/edituser')}>Edit User</Button>
                         </Card.Body>
                     </Card>
                 </Col>
