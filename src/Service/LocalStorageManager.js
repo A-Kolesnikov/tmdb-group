@@ -44,7 +44,7 @@ export function clearStorage() {
     dB.removeItem('tmdbData')
 }
 
-function updStorage(newDdata){  //update localStorage if some data was changed
+export function updStorage(newDdata){  //update localStorage if some data was changed
     dB.setItem('tmdbData', JSON.stringify(newDdata))
 }
 
