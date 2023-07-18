@@ -19,13 +19,23 @@ const HomePage = () => {
     
     let list1 = ''
     if(movList1){
-        list1 = movList1.map((element) => (<Card h5={element.title} txt={element.overview} img={`https://image.tmdb.org/t/p/original`+element.poster_path} key={element.id}/>))
+        list1 = movList1.map((movie) => (
+            <div className="col-sm-3 mb-4" key={movie.id}>
+                <Card
+                image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                h5={movie.title}
+                txt={movie.overview}/>
+            </div>
+        
+        ))
     }
     return (
-        <div>
-            <Navbar />
+        <div className="container">
             <h2>{`Welcome ${currentUser.username}!`}</h2>
+            <div className="row">
             {list1}
+            </div>
+            
 
         </div>
     );
