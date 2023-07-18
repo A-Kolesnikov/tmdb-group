@@ -22,13 +22,13 @@ const tmdbInitData = {      //initial static data for testing
             viewedMovies: []
         }
     ],
-    languages: {
-        "de": "german",
-        "en": "english",
-        "es": "spanish",
-        "he": "hebrew",
-        "ru": "russian"
-    }
+    languages: [
+        {code: 'de', name: 'german'},
+        {code: 'en', name: 'english'},
+        {code: 'es', name:'spanish'},
+        {code: 'he', name: 'hebrew'},
+        {code: 'ru', name: 'russian'}
+    ]
 }
 
 export function initStorage() {  //if there is no data about prject in local storage - create object with default data
