@@ -1,6 +1,10 @@
 import React from 'react';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import HomePage from './HomePage';
 import RegisterPage from './RegisterPage';
+import LoginPage from './LoginPage';
 import UserPage from './UserPage';
 import EditUserPage from './EditUserPage';
 import SearchPage from './SearchPage'; // import SearchPage
@@ -11,7 +15,9 @@ function App() {
     <Router>
       <Navbar /> {/* include Navbar */}
       <Routes>
-        <Route path="/" element={<RegisterPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/user" element={<UserPage />} />
         <Route path="/edituser" element={<EditUserPage />} />
         <Route path="/search" element={<SearchPage />} /> {/* include SearchPage */}
