@@ -1,7 +1,7 @@
 const dB = localStorage
 
 const tmdbInitData = {      //initial static data for testing
-    loggedUser: "1",
+    loggedUser: 2,          //suppose, that user 2 is logged in
     users: [
         {
             id: 1,
@@ -9,6 +9,7 @@ const tmdbInitData = {      //initial static data for testing
             password: '0000',
             favLang: 'ru',
             favGenre: '',
+            favGallery: 1,
             voice: '',
             viewedMovies: []
         },
@@ -18,6 +19,7 @@ const tmdbInitData = {      //initial static data for testing
             password: '1234',
             favLang: 'he',
             favGenre: 1,
+            favGallery: 3,
             voice: '',
             viewedMovies: []
         }
@@ -67,4 +69,4 @@ function setLoggedUser(id){     //Call, when LogIn successfully
     updStorage(data);
 }
 
-setLoggedUser("2")      //immitates, that user2 with id: 2 Logged in
+setLoggedUser(1)      //immitates, that user2 with id: 1 Logged in
