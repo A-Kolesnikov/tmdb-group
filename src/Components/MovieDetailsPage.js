@@ -3,11 +3,13 @@ import { downloadMovie } from "../Service/TMDBManager";
 
 function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
+  const movieId = 278;
 
   useEffect(() => {
-    downloadMovie(setMovie, 278);
-  }, []);
+    downloadMovie(setMovie, movieId);
+  }, [movieId]);
 
+  
   console.log(movie);
 
   return (
