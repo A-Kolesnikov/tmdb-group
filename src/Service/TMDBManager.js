@@ -20,7 +20,7 @@ export async function downloadGenres(setFunc){  //fetch list of genres in langua
         let response = await fetch(urlGenres, options)
         let decode = await response.json()
 
-        setFunc(decode)
+        setFunc(decode.genres)
     } catch (err) {
         console.error('error' + err)
     }
