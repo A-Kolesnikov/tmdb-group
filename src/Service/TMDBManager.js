@@ -36,12 +36,23 @@ export async function downloadMovieList(setFunc, listNumber){   //using example:
     }
 }
 
-export async function downloadMovie(setFunc, movID){   //using example: downloadMovie(setMovie, 278) - write top_rated list to your list wariable with useState hook
-    const urlList = `https://api.themoviedb.org/3/movie/${movID}?language=${currentLanguage}`
+export async function downloadMovie(setFunc, movID){   //using example: downloadMovie(setMovie, 278) - write Shawshank Redemption details list to your movie wariable with useState hook
+    const urlMov = `https://api.themoviedb.org/3/movie/${movID}?language=${currentLanguage}`
     try {
-        let response = await fetch(urlList, options)
+        let response = await fetch(urlMov, options)
         let decode = await response.json()
         setFunc(decode)
+    } catch (err) {
+        console.error('error' + err)
+    }
+}
+
+export async function searchMovies(setFunc, searchRequest){
+    const urlSearch = `https://api.themoviedb.org/3/search/movie?query=${searchRequest}&language=${currentLanguage}`
+    try {
+        let response = await fetch(urlSearch, options)
+        let decode = await response.json()
+        setFunc(decode.results)
     } catch (err) {
         console.error('error' + err)
     }
