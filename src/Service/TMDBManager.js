@@ -57,3 +57,8 @@ export async function searchMovies(setFunc, searchRequest){
         console.error('error' + err)
     }
 }
+
+
+export async function downloadMovieListByGenre(setFunc, genreID){
+    console.log('hello!')
+}

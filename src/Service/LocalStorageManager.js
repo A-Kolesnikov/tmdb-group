@@ -18,7 +18,7 @@ const tmdbInitData = {      //initial static data for testing
             username: 'Antonette',
             password: '1234',
             favLang: 'he',
-            favGenre: 1,
+            favGenre: 27,
             favGallery: 3,
             voice: '',
             viewedMovies: []

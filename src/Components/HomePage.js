@@ -36,7 +36,6 @@ const HomePage = () => {
             {list1}
             </div>
             
-
         </div>
     );
 }
