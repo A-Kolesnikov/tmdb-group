@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+/* NAV BAR STYLE */
+
+.nav-link:hover {
+  background-color: purple;
+  color: white; 
+  border-radius: 15px;
+}
+
+.form-control {
+  background-color: transparent;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  padding: 8px;
+  width: 90%;
+  color: #000000;
+  margin: auto;
+  margin-top: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+

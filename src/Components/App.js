@@ -1,28 +1,35 @@
-import React from 'react';
-
+import React from 'react';  //packages
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import { initStorage } from '../Service/LocalStorageManager'; //functions
+import { downloadMovieList } from '../Service/TMDBManager';
+
+import RegisterPage from './RegisterPage'; //components
+import MovieDetailsPage from './MovieDetailsPage';
 import HomePage from './HomePage';
-import RegisterPage from './RegisterPage';
 import LoginPage from './LoginPage';
 import UserPage from './UserPage';
 import EditUserPage from './EditUserPage';
-import SearchPage from './SearchPage'; // import SearchPage
-import Navbar from './NavBar'; // import Navbar
+import SearchPage from './SearchPage';
+import Navbar from './NavBar'; 
 
 function App() {
+  initStorage()
+  
   return (
-    <Router>
-      <Navbar /> {/* include Navbar */}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/user" element={<UserPage />} />
-        <Route path="/edituser" element={<EditUserPage />} />
-        <Route path="/search" element={<SearchPage />} /> {/* include SearchPage */}
-      </Routes>
-    </Router>
+    <div className="App">
+      <Router>
+      <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<loginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/movie:id" element={<MovieDetailsPage />} />
+          <Route path="/user:id" element={<UserPage />} />
+          <Route path="/search" element={<SearchPage />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

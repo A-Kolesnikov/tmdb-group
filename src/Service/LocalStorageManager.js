@@ -69,4 +69,4 @@ function setLoggedUser(id){     //Call, when LogIn successfully
     updStorage(data);
 }
 
-setLoggedUser(1)      //immitates, that user2 with id: 1 Logged in
+setLoggedUser(1)      //immitates, that user1 with id: 1 Logged in
