@@ -26,6 +26,8 @@ const SearchPage = () => {
     return (
         <div className="container">
             <div className="mb-3">
+            <div className="search-bar-container">
+        
                 <input
                     type="text"
                     value={search}
@@ -33,6 +35,7 @@ const SearchPage = () => {
                     placeholder="Search Movies..."
                     className="form-control"
                 />
+            </div>
             </div>
             <h2>Popular Movies</h2>
             <div className="row">
