@@ -17,22 +17,24 @@ function LoginPage() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
+    
         // Fetch the user data from the local storage
-        const tmdbData = JSON.parse(localStorage.getItem('tmdbData'));
+        let tmdbData = JSON.parse(localStorage.getItem('tmdbData'));
         const userData = tmdbData ? tmdbData.users : [];
-        
-
+    
         // Check if the user exists and the password is correct
         const user = userData && userData.find(user => user.username === username && user.password === password);
-
+    
         if (user) {
             // Log the user in
-            localStorage.setItem('loggedUser', JSON.stringify(user));
-
+            tmdbData.loggedUser = user.id; // Set loggedUser in tmdbData object
+    
+            // Save tmdbData back to localStorage
+            localStorage.setItem('tmdbData', JSON.stringify(tmdbData));
+    
             // Display a success message
             alert('Hurray!');
-
+    
             // Redirect the user to the home page
             navigate('/');
         } else {
