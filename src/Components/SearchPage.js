@@ -1,56 +1,66 @@
 import React, { useState, useEffect } from "react";
-import Card from "./Card";
+import { searchMovies, downloadGenres, downloadMovieList } from '../Service/TMDBManager';
+import Card from './Card';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-const SearchPage = () => {
-    const [movies, setMovies] = useState([]);
-    const [search, setSearch] = useState("");
+function SearchPage() {
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [genres, setGenres] = useState([]);
+    const [selectedGenre, setSelectedGenre] = useState(null);
 
     useEffect(() => {
-        const fetchMovies = async () => {
-            const response = await fetch(
-                search
-                    ? `https://api.themoviedb.org/3/search/movie?api_key=76222a968c469d597af4f8040683e1ae&language=en-US&query=${search}&page=1&include_adult=false`
-                    : `https://api.themoviedb.org/3/movie/popular?api_key=76222a968c469d597af4f8040683e1ae&language=en-US&page=1`
-            );
-            const data = await response.json();
-            setMovies(data.results);
-        };
+        downloadGenres(setGenres);
+        downloadMovieList(setSearchResults, 3); // Fetch upcoming movies by default
+    }, []);
 
-        fetchMovies();
-    }, [search]);
-
-    const handleSearch = (event) => {
-        setSearch(event.target.value);
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
     };
 
+    const handleGenreChange = (e) => {
+        setSelectedGenre(e.target.value);
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        searchMovies(setSearchResults, searchQuery);
+    };
+
+    const filteredResults = selectedGenre ? searchResults.filter(movie => movie.genre_ids.includes(parseInt(selectedGenre))) : searchResults;
+
     return (
-        <div className="container">
-            <div className="mb-3">
-            <div className="search-bar-container">
-        
-                <input
-                    type="text"
-                    value={search}
-                    onChange={handleSearch}
-                    placeholder="Search Movies..."
-                    className="form-control"
-                />
-            </div>
-            </div>
-            <h2>Popular Movies</h2>
-            <div className="row">
-                {movies.map((movie) => (
-                    <div className="col-sm-3 mb-4" key={movie.id}>
+        <Container>
+            <Form onSubmit={handleSearchSubmit} className="mb-3">
+                <Form.Group controlId="searchQuery">
+                    <Form.Control type="text" placeholder="Search Movies..." value={searchQuery} onChange={handleSearchChange} />
+                </Form.Group>
+                <Form.Group controlId="selectGenre" className="mt-3">
+                    <Form.Control as="select" value={selectedGenre} onChange={handleGenreChange}>
+                        <option value="">All genres</option>
+                        {genres.map(genre => (
+                            <option key={genre.id} value={genre.id}>{genre.name}</option>
+                        ))}
+                    </Form.Control>
+                </Form.Group>
+                <Button variant="primary" type="submit" className="mt-3">
+                    Search
+                </Button>
+            </Form>
+            <Row className="card-container">
+                {filteredResults.map(movie => (
+                    <Col sm={3} className="mb-4" key={movie.id}>
                         <Card
                             image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                            h5={movie.original_title}
-                            txt={movie.overview.substring(0, 100) + "..."}
+                            h5={movie.title}
+                            txt={movie.overview}
+                            movie={movie}
                         />
-                    </div>
+                    </Col>
                 ))}
-            </div>
-        </div>
+            </Row>
+        </Container>
     );
-};
+}
 
 export default SearchPage;
