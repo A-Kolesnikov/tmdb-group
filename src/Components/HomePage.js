@@ -17,7 +17,6 @@ const HomePage = () => {
         favGallery = currentUser.favGallery ? currentUser.favGallery : 3;
         favGenre = currentUser.favGenre ? currentUser.favGenre : '';
     }
-    console.log(favGenre)
 
     useEffect(() => {
         downloadMovieList(setMovList1, favGallery)
@@ -31,13 +30,12 @@ const HomePage = () => {
         }
     }, [])
 
-
     let list1 = 'Loading movie gallery'
     let list2 = ''
     if (movList1) {
         if(!favGenre){
         list1 = movList1.map((movie) => (
-            <div className="col-sm-3 mb-4" key={movie.id}>
+            <div className="col-sm-3 mb-4" key={'m1'+movie.id}>
                 <Card
                     image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     h5={movie.title}
@@ -54,7 +52,9 @@ const HomePage = () => {
                     <Card
                     image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     h5={movie.title}
-                    txt={movie.overview} />
+                    txt={movie.overview}
+                    key={'m1'+movie.id} />
+                    
                     ))}
                 </div>
             </div>
@@ -74,7 +74,8 @@ const HomePage = () => {
                         <Card
                         image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                         h5={movie.title}
-                        txt={movie.overview} />
+                        txt={movie.overview}
+                        key={'m2'+movie.id} />
                         ))}
                     </div>
                 </div>
