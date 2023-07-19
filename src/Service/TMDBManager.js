@@ -9,7 +9,7 @@ const options = {
     }
 };
 
-const data = allData()
+const data = allData() //read application data from localStorage
 const currentUser = data.users.find(user => user.id == data.loggedUser)
 const currentLanguage = currentUser ? (currentUser.favLang ? currentUser.favLang : "en") : "en" //if there is a logged user and he has favourite language, then use it. Otherwise - use English
 
