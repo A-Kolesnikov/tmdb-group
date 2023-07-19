@@ -4,7 +4,16 @@ import { faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import "../App.css"
 
+import { allData, logOut } from '../Service/LocalStorageManager';
+
 function Navbar() {
+  const currentUserID = allData().loggedUser
+  function exit(){
+    logOut()
+    window.location.reload()
+  }
+  const conditionalLink1 = currentUserID ? <Link className="nav-link" to={`/user/${currentUserID}`}>User details</Link> : <Link to="/login" className="nav-link">Login</Link>
+  const conditionalLink2 = currentUserID ? <Link onClick={()=>exit()} to="/" className="nav-link">Logout</Link> : <Link to="/register" className="nav-link">Register</Link>
   return (
     <nav className="navbar bg-dark text-white">
       <div className="container-fluid" style={{width:"50%"}}>
@@ -14,8 +23,8 @@ function Navbar() {
         <Link to="/search" className="nav-link">
           <FontAwesomeIcon icon={faSearch} />
         </Link>
-        <Link to="/login" className="nav-link">Login</Link>
-        <Link to="/register" className="nav-link">Register</Link>
+        {conditionalLink1}
+        {conditionalLink2}
       </div>
     </nav>
   );
