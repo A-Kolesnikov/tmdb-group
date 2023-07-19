@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import { allData } from "../Service/LocalStorageManager";
-import { downloadMovieList } from "../Service/TMDBManager";
+import { downloadMovieList, downloadMovieListByGenre } from "../Service/TMDBManager";
 
-import Navbar from "./NavBar";
 import Card from "./Card";
 
 const HomePage = () => {
@@ -12,30 +11,85 @@ const HomePage = () => {
 
     const data = allData()
     const currentUser = data.users.find(user => user.id == data.loggedUser)
+    let favGallery = 3;
+    let favGenre = '';
+    if (data.loggedUser) {
+        favGallery = currentUser.favGallery ? currentUser.favGallery : 3;
+        favGenre = currentUser.favGenre ? currentUser.favGenre : '';
+    }
+    console.log(favGenre)
 
     useEffect(() => {
-        downloadMovieList(setMovList1, 3)
+        downloadMovieList(setMovList1, favGallery)
     }, [])
-    
-    let list1 = ''
-    if(movList1){
+
+    useEffect(() => {
+        if (favGenre !== '') {
+            downloadMovieListByGenre(setMovList2, favGenre)
+        } else {
+            setMovList2('')
+        }
+    }, [])
+
+
+    let list1 = 'Loading movie gallery'
+    let list2 = ''
+    if (movList1) {
+        if(!favGenre){
         list1 = movList1.map((movie) => (
             <div className="col-sm-3 mb-4" key={movie.id}>
                 <Card
-                image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                h5={movie.title}
-                txt={movie.overview}/>
+                    image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    h5={movie.title}
+                    txt={movie.overview} />
             </div>
-        
         ))
+    } else {
+        list1 = <div className='row d-flex justify-content-center'>
+        <div className='col-12'>
+            <h2 className='text-center'>Favorite movie gallery</h2>
+            <div className='d-flex p-3 text-center' style={{ overflowX: "auto" }}>
+                <div className='d-flex flex-row'>
+                    {movList1.map((movie) => (
+                    <Card
+                    image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    h5={movie.title}
+                    txt={movie.overview} />
+                    ))}
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    }
+    if (movList2) {
+        
+
+        list2 = <div className='row d-flex justify-content-center'>
+            <div className='col-12'>
+                <h2 className='text-center'>Movies of favorite genre</h2>
+                <div className='d-flex p-3 text-center' style={{ overflowX: "auto" }}>
+                    <div className='d-flex flex-row'>
+                        {movList2.map((movie) => (
+                        <Card
+                        image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        h5={movie.title}
+                        txt={movie.overview} />
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
     }
     return (
         <div className="container">
-            <h2>{`Welcome ${currentUser.username}!`}</h2>
+            <h2>{`Welcome${data.loggedUser ? ', '+currentUser.username : ' to TMDB'}!`}</h2>
             <div className="row">
-            {list1}
+                {list1}
             </div>
-            
+            <div className="row ">
+                {list2}
+            </div>
 
         </div>
     );
