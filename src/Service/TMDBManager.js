@@ -57,3 +57,15 @@ export async function searchMovies(setFunc, searchRequest){
         console.error('error' + err)
     }
 }
+
+
+export async function downloadMovieListByGenre(setFunc, genreID){
+    const urlListByGenre =`https://api.themoviedb.org/3/discover/movie?language=${currentLanguage}&with_genres=${genreID}`
+    try {
+        let response = await fetch(urlListByGenre, options)
+        let decode = await response.json()
+        setFunc(decode.results)
+    } catch (err) {
+        console.error('error' + err)
+    }
+}
