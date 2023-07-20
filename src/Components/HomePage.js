@@ -20,7 +20,7 @@ const HomePage = ({loggedUserID}) => {
 
     useEffect(() => {
         downloadMovieList(setMovList1, favGallery, loggedUserID)
-    }, [])
+    }, [loggedUserID])
 
     useEffect(() => {
         if (favGenre !== '') {
@@ -28,7 +28,7 @@ const HomePage = ({loggedUserID}) => {
         } else {
             setMovList2('')
         }
-    }, [])
+    }, [loggedUserID])
 
     let list1 = 'Loading movie gallery'
     let list2 = ''

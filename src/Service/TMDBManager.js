@@ -19,7 +19,7 @@ function getLanguage(id){
     return (currentUser ? (currentUser.favLang ? currentUser.favLang : "en") : "en") //if there is a logged user and he has favourite language, then use it. Otherwise - use English
 }
 
-export async function downloadGenres(setFunc, loggedUserID){  //fetch list of genres in language of user, and use on that list any function, passed as setFunc
+export async function downloadGenres(setFunc, loggedUserID=''){  //fetch list of genres in language of user, and use on that list any function, passed as setFunc
     const currentLanguage = getLanguage(loggedUserID)
     const urlGenres = `https://api.themoviedb.org/3/genre/movie/list?language=${currentLanguage}`
     try {
@@ -31,7 +31,7 @@ export async function downloadGenres(setFunc, loggedUserID){  //fetch list of ge
     }
 }
 
-export async function downloadMovieList(setFunc, listNumber, loggedUserID){   //using example: downloadMovieList(setList, 2) - write top_rated list to your list wariable with useState hook
+export async function downloadMovieList(setFunc, listNumber, loggedUserID=''){   //using example: downloadMovieList(setList, 2) - write top_rated list to your list wariable with useState hook
     const currentLanguage = getLanguage(loggedUserID)
     const listNames = ['now_playing', 'popular', 'top_rated', 'upcoming']
     const urlList = `https://api.themoviedb.org/3/movie/${listNames[listNumber]}?language=${currentLanguage}`
@@ -44,7 +44,7 @@ export async function downloadMovieList(setFunc, listNumber, loggedUserID){   //
     }
 }
 
-export async function downloadMovie(setFunc, movID, loggedUserID){   //using example: downloadMovie(setMovie, 278) - write Shawshank Redemption details list to your movie wariable with useState hook
+export async function downloadMovie(setFunc, movID, loggedUserID=''){   //using example: downloadMovie(setMovie, 278) - write Shawshank Redemption details list to your movie wariable with useState hook
     const currentLanguage = getLanguage(loggedUserID)
     const urlMov = `https://api.themoviedb.org/3/movie/${movID}?language=${currentLanguage}`
     try {
@@ -56,7 +56,7 @@ export async function downloadMovie(setFunc, movID, loggedUserID){   //using exa
     }
 }
 
-export async function searchMovies(setFunc, searchRequest, loggedUserID){
+export async function searchMovies(setFunc, searchRequest, loggedUserID=''){
     const currentLanguage = getLanguage(loggedUserID)
     const urlSearch = `https://api.themoviedb.org/3/search/movie?query=${searchRequest}&language=${currentLanguage}`
     try {
@@ -69,7 +69,7 @@ export async function searchMovies(setFunc, searchRequest, loggedUserID){
 }
 
 
-export async function downloadMovieListByGenre(setFunc, genreID, loggedUserID){
+export async function downloadMovieListByGenre(setFunc, genreID, loggedUserID=''){
     const currentLanguage = getLanguage(loggedUserID)
     const urlListByGenre =`https://api.themoviedb.org/3/discover/movie?language=${currentLanguage}&with_genres=${genreID}`
     try {
