@@ -1,15 +1,15 @@
 const dB = localStorage
 
 const tmdbInitData = {      //initial static data for testing
-    loggedUser: 2,          //suppose, that user 2 is logged in
+    loggedUser: '',         
     users: [
         {
             id: 1,
             username: 'Bret',
             password: '0000',
-            favLang: 'ru',
-            favGenre: '',
-            favGallery: 1,
+            favLang: 'en',
+            favGenre: '27',
+            favGallery: 2,
             voice: '',
             viewedMovies: []
         },
@@ -18,7 +18,7 @@ const tmdbInitData = {      //initial static data for testing
             username: 'Antonette',
             password: '1234',
             favLang: 'he',
-            favGenre: 27,
+            favGenre: '',
             favGallery: 2,
             voice: '',
             viewedMovies: []

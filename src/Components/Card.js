@@ -21,8 +21,8 @@ const Card = ({ image, h5, txt, movie }) => {
       <div className="card-body">
         <h5 className="card-title text-white">{h5}</h5>
         <p className="card-text">{txt}</p>
-        <button class="button">
-          <span class="button-content" onClick={() => handleViewDetails(movie)}>View Details </span>
+        <button className="button">
+          <span className="button-content" onClick={() => handleViewDetails(movie)}>View Details </span>
         </button>
       </div>
     </div>
