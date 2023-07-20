@@ -80,7 +80,21 @@ export function saveMovieToUser(movie) {
     const data = allData();
     const user = data.users.find(user => user.id === data.loggedUser);
     if(user) {
-        user.viewedMovies.push(movie);
+        const isMovieSaved = user.viewedMovies.some(viewedMovie => viewedMovie.id === movie.id);
+
+        if(!isMovieSaved) {
+            user.viewedMovies.push(movie);
+            updStorage(data);
+        }
+    } else {
+        console.log("No such user found");
+    }
+}
+export function removeMovieFromUser(movieId) {
+    const data = allData();
+    const user = data.users.find(user => user.id === data.loggedUser);
+    if(user) {
+        user.viewedMovies = user.viewedMovies.filter(movie => movie.id !== movieId);
         updStorage(data);
     } else {
         console.log("No such user found");
