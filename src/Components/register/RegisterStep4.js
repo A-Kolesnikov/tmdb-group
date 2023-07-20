@@ -8,6 +8,7 @@ export const RegisterStep4 = ({ setFormData, formData, navigation }) => {
         e.preventDefault();
         setFormData({ ...formData, voice });
         navigation.next();
+        window.location.reload()
     };
 
     return (

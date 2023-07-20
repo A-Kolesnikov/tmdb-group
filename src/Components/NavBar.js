@@ -1,14 +1,16 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import "../App.css"
 
 import { allData, logOut } from '../Service/LocalStorageManager';
 
 function Navbar() {
   const currentUserID = allData().loggedUser
+  const navigate = useNavigate()
   function exit(){
+    navigate('/')
     logOut()
     window.location.reload()
   }
