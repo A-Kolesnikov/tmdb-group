@@ -27,6 +27,7 @@ function App() {
           <Route path="/movie/:id" element={<MovieDetailsPage />} />
           <Route path="/user/:id" element={<UserPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/edituser" element={<EditUserPage />} />
         </Routes>
       </Router>
     </div>
