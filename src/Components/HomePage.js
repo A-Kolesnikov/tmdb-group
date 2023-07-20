@@ -19,12 +19,12 @@ const HomePage = ({loggedUserID}) => {
     }
 
     useEffect(() => {
-        downloadMovieList(setMovList1, favGallery)
+        downloadMovieList(setMovList1, favGallery, loggedUserID)
     }, [])
 
     useEffect(() => {
         if (favGenre !== '') {
-            downloadMovieListByGenre(setMovList2, favGenre)
+            downloadMovieListByGenre(setMovList2, favGenre, loggedUserID)
         } else {
             setMovList2('')
         }

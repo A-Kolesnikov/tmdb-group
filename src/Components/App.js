@@ -30,9 +30,9 @@ function App() {
           <Route path="/" element={<HomePage loggedUserID={loggedUserID}/>} />
           <Route path="/login" element={<LoginPage changeLoggedUser={changeLoggedUser} />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/movie/:id" element={<MovieDetailsPage />} />
+          <Route path="/movie/:id" element={<MovieDetailsPage loggedUserID={loggedUserID} />} />
           <Route path="/user/:id" element={<UserPage />} />
-          <Route path="/search" element={<SearchPage />} />
+          <Route path="/search" element={<SearchPage loggedUserID={loggedUserID} />} />
           <Route path="/edituser" element={<EditUserPage />} />
         </Routes>
       </Router>
