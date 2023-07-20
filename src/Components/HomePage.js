@@ -39,7 +39,8 @@ const HomePage = () => {
                 <Card
                     image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     h5={movie.title}
-                    txt={movie.overview} />
+                    txt={movie.overview}
+                    movie={movie}  />
             </div>
         ))
     } else {
@@ -53,7 +54,8 @@ const HomePage = () => {
                     image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     h5={movie.title}
                     txt={movie.overview}
-                    key={'m1'+movie.id} />
+                    key={'m1'+movie.id} 
+                    movie={movie} />
                     
                     ))}
                 </div>
@@ -75,7 +77,8 @@ const HomePage = () => {
                         image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                         h5={movie.title}
                         txt={movie.overview}
-                        key={'m2'+movie.id} />
+                        key={'m2'+movie.id}
+                        movie={movie}  />
                         ))}
                     </div>
                 </div>

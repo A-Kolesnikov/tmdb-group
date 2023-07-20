@@ -1,11 +1,18 @@
 import React from 'react';
 import "../App.css";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { saveMovieToUser } from '../Service/LocalStorageManager'; // make sure the path is correct
 
-const Card = ({ image, h5, txt, setSelectedMovie, movie }) => {
+const Card = ({ image, h5, txt, movie }) => {
+  const navigate = useNavigate();
 
-  const handlePlayClick = () => { //should pass movieID to useParam of MovieDetailsPage
-    setSelectedMovie(movie);
+  const handleViewDetails = (movie) => {
+    if (movie) {
+      saveMovieToUser(movie);
+      navigate(`/movie/${movie.id}`);
+    } else {
+      console.error('Movie is undefined');
+    }
   }
 
   return (
@@ -14,13 +21,12 @@ const Card = ({ image, h5, txt, setSelectedMovie, movie }) => {
       <div className="card-body">
         <h5 className="card-title text-white">{h5}</h5>
         <p className="card-text">{txt}</p>
-        <Link
-          to={{
-            pathname: "/movie-details",
-            state: { movie }
-          }}
+        <button
+          onClick={() => handleViewDetails(movie)}
           className="btn btn-primary"
-        />
+        >
+          View Details
+        </button>
       </div>
     </div>
   );

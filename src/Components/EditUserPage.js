@@ -48,7 +48,7 @@ const EditUserPage = () => {
         updStorage(data);
 
         // Redirect back to the user page
-        navigate("/user");
+        navigate("/user/:id");
     };
 
     return (

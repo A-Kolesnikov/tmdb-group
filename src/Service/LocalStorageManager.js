@@ -76,3 +76,13 @@ function setLoggedUser(id){     //Call, when LogIn successfully
 }
 
 //setLoggedUser('1')      //immitates, that user1 with id: 1 Logged in
+export function saveMovieToUser(movie) {
+    const data = allData();
+    const user = data.users.find(user => user.id === data.loggedUser);
+    if(user) {
+        user.viewedMovies.push(movie);
+        updStorage(data);
+    } else {
+        console.log("No such user found");
+    }
+}
