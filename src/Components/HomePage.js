@@ -19,16 +19,16 @@ const HomePage = ({loggedUserID}) => {
     }
 
     useEffect(() => {
-        downloadMovieList(setMovList1, favGallery)
-    }, [])
+        downloadMovieList(setMovList1, favGallery, loggedUserID)
+    }, [loggedUserID])
 
     useEffect(() => {
         if (favGenre !== '') {
-            downloadMovieListByGenre(setMovList2, favGenre)
+            downloadMovieListByGenre(setMovList2, favGenre, loggedUserID)
         } else {
             setMovList2('')
         }
-    }, [])
+    }, [loggedUserID])
 
     let list1 = 'Loading movie gallery'
     let list2 = ''

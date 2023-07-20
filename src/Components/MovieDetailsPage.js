@@ -7,12 +7,12 @@ import { faPlay, faPause, faStop } from "@fortawesome/free-solid-svg-icons";
 import { voiceover, pauseVoice, stopVoice } from "../Service/VoiceAPIManager";
 import { downloadMovie } from "../Service/TMDBManager";
 
-function MovieDetailsPage() {
+function MovieDetailsPage({loggedUserID}) {
   const {id} = useParams();
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    downloadMovie(setMovie, id);
+    downloadMovie(setMovie, id, loggedUserID);
   }, [id]); // Re-run effect when id changes
 
   // Wait for movie data before rendering

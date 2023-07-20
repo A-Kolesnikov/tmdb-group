@@ -3,15 +3,15 @@ import { searchMovies, downloadGenres, downloadMovieList } from '../Service/TMDB
 import Card from './Card';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-function SearchPage() {
+function SearchPage({loggedUserID}) {
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [genres, setGenres] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState("");
 
     useEffect(() => {
-        downloadGenres(setGenres);
-        downloadMovieList(setSearchResults, 3); // Fetch upcoming movies by default
+        downloadGenres(setGenres, loggedUserID);
+        downloadMovieList(setSearchResults, 3, loggedUserID); // Fetch upcoming movies by default
     }, []);
 
     const handleSearchChange = (e) => {
