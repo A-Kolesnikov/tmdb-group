@@ -1,7 +1,7 @@
-import React from 'react';  //packages
+import React, {useState} from 'react';  //packages
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { initStorage } from '../Service/LocalStorageManager'; //functions
+import { initStorage, allData, dbLoggedUser } from '../Service/LocalStorageManager'; //functions
 import { downloadMovieList } from '../Service/TMDBManager';
 
 import RegisterPage from './RegisterPage'; //components
@@ -15,14 +15,20 @@ import Navbar from './NavBar';
 
 function App() {
   initStorage()
+  const [loggedUserID, setLoggedUserID] = useState(allData().loggedUser)
+  
+  const changeLoggedUser = (id) =>{
+    setLoggedUserID(id);
+    dbLoggedUser(id);
+  }
   
   return (
     <div className="App">
       <Router>
-      <Navbar />
+      <Navbar changeLoggedUser={changeLoggedUser} loggedUserID={loggedUserID} />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<HomePage loggedUserID={loggedUserID}/>} />
+          <Route path="/login" element={<LoginPage changeLoggedUser={changeLoggedUser} />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/movie/:id" element={<MovieDetailsPage />} />
           <Route path="/user/:id" element={<UserPage />} />

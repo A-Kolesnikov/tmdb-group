@@ -69,10 +69,10 @@ export function logOut(){
     updStorage(data);
 }
 
-function setLoggedUser(id){     //Call, when LogIn successfully 
+export function dbLoggedUser(id){     //Call, when LogIn successfully 
     const data = allData();
     data.loggedUser = id;
-    updStorage(data);
+    updStorage(data)
 }
 
 //setLoggedUser('1')      //immitates, that user1 with id: 1 Logged in
