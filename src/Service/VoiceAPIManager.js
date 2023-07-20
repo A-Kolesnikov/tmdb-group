@@ -1,5 +1,4 @@
 export function voiceover(text){
-    console.log("voiceOver start!")
     if(speechSynthesis.paused && speechSynthesis.speaking){
         return speechSynthesis.resume();
     }
