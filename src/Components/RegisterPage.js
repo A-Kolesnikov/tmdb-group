@@ -47,7 +47,7 @@ const RegisterPage = () => {
             updStorage(data);
 
             // Redirect to the user page
-            navigate("/user");
+            navigate("/user/:id");
         }
     };
 
