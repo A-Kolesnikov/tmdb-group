@@ -27,13 +27,13 @@ function MovieDetailsPage() {
       <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
       <p>{movie.overview}</p>
       <div className='row d-flex justify-content-center mb-3'>
-        <div className='col-2'>
+        <div className='col-1'>
           <div className="row">
-            <div className="col-6 border">
-              <FontAwesomeIcon icon={faPlay} size="xl" onClick={() => voiceover(movie.overview)} style={{ cursor: "pointer" }} />
+            <div className="col-6 border" onClick={() => voiceover(movie.overview)} style={{ cursor: "pointer" }}>
+              <FontAwesomeIcon icon={faPlay} size="xl"  />
             </div>
-            <div className='col-6 border'>
-              <FontAwesomeIcon icon={faStop} size="xl" onClick={stopVoice} style={{ cursor: "pointer" }} />
+            <div className='col-6 border' onClick={stopVoice} style={{ cursor: "pointer" }}>
+              <FontAwesomeIcon icon={faStop} size="xl" />
             </div>
           </div>
         </div>
