@@ -5,15 +5,15 @@ import { downloadMovieList, downloadMovieListByGenre } from "../Service/TMDBMana
 
 import Card from "./Card";
 
-const HomePage = () => {
+const HomePage = ({loggedUserID}) => {
     const [movList1, setMovList1] = useState()
     const [movList2, setMovList2] = useState()
 
     const data = allData()
-    const currentUser = data.users.find(user => user.id == data.loggedUser)
+    const currentUser = data.users.find(user => user.id == loggedUserID)
     let favGallery = 3;
     let favGenre = '';
-    if (data.loggedUser) {
+    if (loggedUserID) {
         favGallery = currentUser.favGallery ? currentUser.favGallery : 3;
         favGenre = currentUser.favGenre ? currentUser.favGenre : '';
     }
@@ -87,7 +87,7 @@ const HomePage = () => {
     }
     return (
         <div className="container">
-            <h2>{`Welcome${data.loggedUser ? ', '+currentUser.username : ' to TMDB'}!`}</h2>
+            <h2>{`Welcome${loggedUserID ? ', '+currentUser.username : ' to TMDB'}!`}</h2>
             <div className="row">
                 {list1}
             </div>

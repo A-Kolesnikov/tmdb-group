@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container } from 'react-bootstrap';
 
-function LoginPage() {
+import { allData } from '../Service/LocalStorageManager';
+
+function LoginPage({changeLoggedUser}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -19,7 +21,7 @@ function LoginPage() {
         event.preventDefault();
     
         // Fetch the user data from the local storage
-        let tmdbData = JSON.parse(localStorage.getItem('tmdbData'));
+        let tmdbData = allData()
         const userData = tmdbData ? tmdbData.users : [];
     
         // Check if the user exists and the password is correct
@@ -27,13 +29,14 @@ function LoginPage() {
     
         if (user) {
             // Log the user in
-            tmdbData.loggedUser = user.id; // Set loggedUser in tmdbData object
+            changeLoggedUser(user.id)
+            //tmdbData.loggedUser = user.id; // Set loggedUser in tmdbData object
     
             // Save tmdbData back to localStorage
-            localStorage.setItem('tmdbData', JSON.stringify(tmdbData));
+            //localStorage.setItem('tmdbData', JSON.stringify(tmdbData));
     
             // Display a success message
-            alert('Hurray!');
+            //alert('Hurray!');
     
             // Redirect the user to the home page
             navigate('/');
