@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { downloadMovie } from "../Service/TMDBManager";
 
 function MovieDetailsPage() {
+  const {id} = useParams();
   const [movie, setMovie] = useState(null);
-  const { id } = useParams(); // Get id from URL
 
   useEffect(() => {
     downloadMovie(setMovie, id);
